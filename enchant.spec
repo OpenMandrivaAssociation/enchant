@@ -93,6 +93,8 @@ sh ./autogen.sh
 # But we could move them to /usr/lib/enchant-%major/
 # to allow simultaneous installation with future
 # libenchant2.
+# (anssi) or move them to lib(64)enchant-modules,
+# required by lib(64)enchantN
 %{_libdir}/enchant/lib*.so*
 
 %files -n %{libname}-devel
