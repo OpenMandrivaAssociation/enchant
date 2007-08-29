@@ -1,10 +1,11 @@
 %define major 1
 %define libname %mklibname enchant %{major}
+%define develname %mklibname enchant -d
 
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.3.0
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	LGPL
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
@@ -34,13 +35,15 @@ Requires:	%{name} = %{version}
 This package provides the libraries for using enchant.
 
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Libraries and include files for developing with enchant
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel
+Provides:	%{mklibname enchant 1}-devel = %{version}
+Obsoletes:	%{mklibname enchant 1}-devel
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This package provides the necessary development libraries and include
 files to allow you to develop with enchant.
 
@@ -52,6 +55,9 @@ files to allow you to develop with enchant.
 
 # lib64 fix
 perl -pi -e "s|/lib\b|/%{_lib}|g" configure*
+
+# antibork
+perl -pi -e "s|^automake --version|#automake --version|g" ./autogen.sh
 
 %build
 # this fixes bad relinking (rpath)
@@ -97,7 +103,7 @@ sh ./autogen.sh
 # required by lib(64)enchantN
 %{_libdir}/enchant/lib*.so*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/lib*.so
 %attr(644,root,root) %{_libdir}/*.la
@@ -108,5 +114,3 @@ sh ./autogen.sh
 %{_libdir}/pkgconfig/enchant.pc
 %dir %{_includedir}/enchant
 %{_includedir}/enchant/*
-
-
