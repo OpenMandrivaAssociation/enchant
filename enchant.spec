@@ -20,6 +20,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	hspell-devel
 BuildRequires:	voikko-devel
 %endif
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 A library that wraps other spell checking backends.
