@@ -4,15 +4,14 @@
 
 Summary:	An enchanting spell checking library
 Name:		enchant
-Version:	1.3.0
-Release:	%mkrel 4
-License:	LGPL
+Version:	1.4.1
+Release:	%mkrel 1
+License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.bz2
 # mpol: change default ordering for nl; first myspell
 Patch0:		enchant-1.2.0-ordering-nl.patch
-Patch1:		enchant-cvs-voikko-provider.patch
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	aspell-devel
 BuildRequires:	pkgconfig
@@ -27,22 +26,20 @@ Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 %description
 A library that wraps other spell checking backends.
 
-
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Libraries for enchant
 Group:		System/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description -n	%{libname}
 This package provides the libraries for using enchant.
 
-
-%package -n	%{develname}
+%package -n %{develname}
 Summary:	Libraries and include files for developing with enchant
 Group:		Development/C
-Requires:	%{libname} = %{version}
-Provides:	%{name}-devel
-Provides:	%{mklibname enchant 1}-devel = %{version}
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	%{mklibname enchant 1}-devel = %{version}-%{release}
 Obsoletes:	%{mklibname enchant 1}-devel
 
 %description -n	%{develname}
@@ -53,7 +50,6 @@ files to allow you to develop with enchant.
 
 %setup -q
 %patch0 -p1 -b .ordering-nl
-%patch1 -p1
 
 # lib64 fix
 perl -pi -e "s|/lib\b|/%{_lib}|g" configure*
@@ -76,7 +72,7 @@ sh ./autogen.sh
 
 %makeinstall_std
 
-%find_lang %name
+%find_lang %{name}
 
 %post -n %{libname} -p /sbin/ldconfig
 
@@ -85,9 +81,9 @@ sh ./autogen.sh
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
-%files -f %name.lang
+%files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING.LIB HACKING README TODO
+%doc AUTHORS HACKING README TODO
 %{_bindir}/*
 %{_datadir}/enchant
 %{_mandir}/man1/*
