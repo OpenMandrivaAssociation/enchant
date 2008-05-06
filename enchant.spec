@@ -4,12 +4,12 @@
 
 Summary:	An enchanting spell checking library
 Name:		enchant
-Version:	1.4.1
+Version:	1.4.2
 Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
-Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.bz2
+Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
 # mpol: change default ordering for nl; first myspell
 Patch0:		enchant-1.2.0-ordering-nl.patch
 BuildRequires:	glib2-devel >= 2.0.0
