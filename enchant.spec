@@ -60,7 +60,7 @@ perl -pi -e "s|^automake --version|#automake --version|g" ./autogen.sh
 %build
 # this fixes bad relinking (rpath)
 rm -f configure
-sh ./autogen.sh
+autoreconf --force --install
 
 %configure2_5x \
      --with-myspell-dir=%{_datadir}/dict/ooo
