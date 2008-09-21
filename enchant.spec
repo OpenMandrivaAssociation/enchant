@@ -5,7 +5,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.4.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
@@ -20,6 +20,10 @@ BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 BuildRequires:	hspell-devel
 BuildRequires:	voikko-devel
+BuildRequires:	dbus-glib-devel
+%endif
+%if %mdkversion > 200800
+BuildRequires:	hunspell-devel
 %endif
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
