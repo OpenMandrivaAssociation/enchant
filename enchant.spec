@@ -5,13 +5,15 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.4.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
 # mpol: change default ordering for nl; first myspell
 Patch0:		enchant-1.2.0-ordering-nl.patch
+# gw from Ubuntu, fix crash loading myspell dictionaries
+Patch1:		enchant-1.4.2-fix_non_matching_dicts_crasher.patch
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	aspell-devel
 BuildRequires:	pkgconfig
@@ -54,6 +56,7 @@ files to allow you to develop with enchant.
 
 %setup -q
 %patch0 -p1 -b .ordering-nl
+%patch1 -p1
 
 # lib64 fix
 perl -pi -e "s|/lib\b|/%{_lib}|g" configure*
