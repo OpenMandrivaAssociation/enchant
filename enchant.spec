@@ -5,7 +5,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.4.2
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/enchant/
@@ -55,7 +55,7 @@ files to allow you to develop with enchant.
 %prep
 
 %setup -q
-%patch0 -p1 -b .ordering-nl
+%patch0 -p0 -b .ordering-nl
 %patch1 -p1
 
 # lib64 fix
