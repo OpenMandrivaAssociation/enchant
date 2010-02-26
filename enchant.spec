@@ -58,17 +58,7 @@ files to allow you to develop with enchant.
 %patch0 -p0 -b .ordering-nl
 %patch1 -p1 -b .fix-dict-list
 
-# lib64 fix
-perl -pi -e "s|/lib\b|/%{_lib}|g" configure*
-
-# antibork
-perl -pi -e "s|^automake --version|#automake --version|g" ./autogen.sh
-
 %build
-# this fixes bad relinking (rpath)
-rm -f configure
-autoreconf --force --install
-
 %configure2_5x \
      --with-myspell-dir=%{_datadir}/dict/ooo
 
@@ -117,7 +107,6 @@ autoreconf --force --install
 %{_libdir}/lib*.so
 %attr(644,root,root) %{_libdir}/*.la
 %{_libdir}/*.a
-#%{_libdir}/enchant/*.so
 %{_libdir}/enchant/*.a
 %attr(644,root,root) %{_libdir}/enchant/*.la
 %{_libdir}/pkgconfig/enchant.pc
