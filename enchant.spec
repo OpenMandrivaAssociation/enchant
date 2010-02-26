@@ -10,8 +10,6 @@ License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/projects/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
-# mpol: change default ordering for nl; first myspell
-Patch0:		enchant-1.2.0-ordering-nl.patch
 # (fc) 1.5.0-2mdv fix dictionnary list (Abi bug #12305)
 Patch1:		enchant-1.5.0-fix-dict-list.patch
 BuildRequires:	glib2-devel >= 2.0.0
@@ -55,7 +53,6 @@ files to allow you to develop with enchant.
 %prep
 
 %setup -q
-%patch0 -p0 -b .ordering-nl
 %patch1 -p1 -b .fix-dict-list
 
 %build
