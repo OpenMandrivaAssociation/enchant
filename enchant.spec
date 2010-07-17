@@ -4,14 +4,12 @@
 
 Summary:	An enchanting spell checking library
 Name:		enchant
-Version:	1.5.0
-Release:	%mkrel 3
+Version:	1.6.0
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/projects/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
-# (fc) 1.5.0-2mdv fix dictionnary list (Abi bug #12305)
-Patch1:		enchant-1.5.0-fix-dict-list.patch
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	aspell-devel
 BuildRequires:	pkgconfig
@@ -53,7 +51,6 @@ files to allow you to develop with enchant.
 %prep
 
 %setup -q
-%patch1 -p1 -b .fix-dict-list
 
 %build
 %configure2_5x \
