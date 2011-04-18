@@ -12,17 +12,9 @@ URL:		http://www.abisource.com/projects/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	aspell-devel
-BuildRequires:	pkgconfig
-%if %mdkversion >= 200700
-# hspell check uses -lz:
-BuildRequires:	zlib-devel
 BuildRequires:	hspell-devel
 BuildRequires:	voikko-devel
-BuildRequires:	dbus-glib-devel
-%endif
-%if %mdkversion > 200800
 BuildRequires:	hunspell-devel
-%endif
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -41,8 +33,6 @@ Summary:	Libraries and include files for developing with enchant
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	%{mklibname enchant 1}-devel = %{version}-%{release}
-Obsoletes:	%{mklibname enchant 1}-devel
 
 %description -n	%{develname}
 This package provides the necessary development libraries and include
