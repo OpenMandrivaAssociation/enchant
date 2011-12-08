@@ -51,9 +51,8 @@ files to allow you to develop with enchant.
 rm -rf %{buildroot}
 %makeinstall_std
 find %{buildroot} -name "*.la" -delete
-%find_lang %{name}
 
-%files -f %{name}.lang
+%files
 %doc AUTHORS HACKING README TODO
 %{_bindir}/*
 %{_datadir}/enchant
