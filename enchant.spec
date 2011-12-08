@@ -5,7 +5,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.6.0
-Release:	%mkrel 2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/projects/enchant/
@@ -15,7 +15,7 @@ BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
 BuildRequires:	voikko-devel
 BuildRequires:	hunspell-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Conflicts:	%{libname} < 1.6.0-3
 
 %description
 A library that wraps other spell checking backends.
@@ -23,7 +23,6 @@ A library that wraps other spell checking backends.
 %package -n %{libname}
 Summary:	Libraries for enchant
 Group:		System/Libraries
-Requires:	%{name} = %{version}-%{release}
 
 %description -n	%{libname}
 This package provides the libraries for using enchant.
@@ -39,60 +38,35 @@ This package provides the necessary development libraries and include
 files to allow you to develop with enchant.
 
 %prep
-
 %setup -q
 
 %build
 %configure2_5x \
-     --with-myspell-dir=%{_datadir}/dict/ooo
+	--disable-static \
+	--with-myspell-dir=%{_datadir}/dict/ooo
 
 %make
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
+rm -rf %{buildroot}
 %makeinstall_std
-
+find %{buildroot} -name "*.la" -delete
 %find_lang %{name}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc AUTHORS HACKING README TODO
 %{_bindir}/*
 %{_datadir}/enchant
 %{_mandir}/man1/*
-
-%files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/lib*.so.%{major}*
 %dir %{_libdir}/enchant
-# todo: split backends in seperate packages?
-# (anssi) Nope. Nothing would pull them, then.
-# But we could move them to /usr/lib/enchant-%major/
-# to allow simultaneous installation with future
-# libenchant2.
-# (anssi) or move them to lib(64)enchant-modules,
-# required by lib(64)enchantN
 %{_libdir}/enchant/lib*.so*
 
+%files -n %{libname}
+%{_libdir}/lib*.so.%{major}*
+
 %files -n %{develname}
-%defattr(-,root,root)
 %{_libdir}/lib*.so
-%attr(644,root,root) %{_libdir}/*.la
-%{_libdir}/*.a
-%{_libdir}/enchant/*.a
-%attr(644,root,root) %{_libdir}/enchant/*.la
 %{_libdir}/pkgconfig/enchant.pc
 %dir %{_includedir}/enchant
 %{_includedir}/enchant/*
+
