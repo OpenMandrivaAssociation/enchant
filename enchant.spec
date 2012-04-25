@@ -10,11 +10,11 @@ License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.abisource.com/projects/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
-BuildRequires:	voikko-devel
-BuildRequires:	hunspell-devel
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(hunspell)
+BuildRequires:	pkgconfig(libvoikko)
 Conflicts:	%{libname} < 1.6.0-3
 
 %description
@@ -48,7 +48,6 @@ files to allow you to develop with enchant.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 find %{buildroot} -name "*.la" -delete
 
