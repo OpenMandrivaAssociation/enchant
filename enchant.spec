@@ -40,6 +40,7 @@ files to allow you to develop with enchant.
 
 %prep
 %setup -q
+autoreconf -fiv
 
 %build
 %configure2_5x \
