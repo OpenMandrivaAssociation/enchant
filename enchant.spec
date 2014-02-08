@@ -5,7 +5,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.6.0
-Release:	9
+Release:	10
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.abisource.com/projects/enchant/
