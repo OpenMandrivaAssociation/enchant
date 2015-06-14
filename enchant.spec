@@ -5,7 +5,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.6.0
-Release:	16
+Release:	17
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.abisource.com/projects/enchant/
@@ -43,7 +43,7 @@ files to allow you to develop with enchant.
 autoreconf -fiv
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--with-myspell-dir=%{_datadir}/dict/ooo
 
