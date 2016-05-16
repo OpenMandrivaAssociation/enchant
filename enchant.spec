@@ -10,7 +10,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.abisource.com/projects/enchant/
 Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
-
+Patch0:		hunspell-1.4.0-has-no-limit.patch
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
 BuildRequires:	pkgconfig(glib-2.0)
@@ -40,6 +40,7 @@ files to allow you to develop with enchant.
 
 %prep
 %setup -q
+%apply_patches
 autoreconf -fiv
 
 %build
