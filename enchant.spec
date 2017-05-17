@@ -4,12 +4,12 @@
 
 Summary:	An enchanting spell checking library
 Name:		enchant
-Version:	1.6.0
-Release:	24
+Version:	1.6.1
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://www.abisource.com/projects/enchant/
-Source0:	http://www.abisource.com/downloads/enchant/%{version}/%{name}-%{version}.tar.gz
+Url:		https://abiword.github.io/enchant/
+Source0:	https://github.com/AbiWord/enchant/archive/enchant-%(echo %{version} |sed -e 's,\.,-,g').tar.gz
 Patch0:		hunspell-1.4.0-has-no-limit.patch
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
@@ -39,16 +39,17 @@ This package provides the necessary development libraries and include
 files to allow you to develop with enchant.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{name}-%(echo %{version} |sed -e 's,\.,-,g')
 %apply_patches
 autoreconf -fiv
+libtoolize --force
 
 %build
 %configure \
 	--disable-static \
 	--with-myspell-dir=%{_datadir}/dict/ooo
 
-%make
+%make LIBTOOLFLAGS="--tag=CC"
 
 %install
 %makeinstall_std
