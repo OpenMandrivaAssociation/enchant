@@ -1,20 +1,23 @@
 %define major	1
 %define libname	%mklibname enchant %{major}
 %define devname	%mklibname enchant -d
+%define _disable_rebuild_configure 1
+
+%define url_ver %(echo %{version} |sed -e 's,\\.,-,g')
 
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.6.1
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://abiword.github.io/enchant/
-Source0:	https://github.com/AbiWord/enchant/archive/enchant-%(echo %{version} |sed -e 's,\.,-,g').tar.gz
-Patch0:		hunspell-1.4.0-has-no-limit.patch
+Source0:	https://github.com/AbiWord/enchant/archive/enchant-%{url_ver}/%{name}-%{version}.tar.gz
+
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(hunspell)
+BuildRequires:	pkgconfig(hunspell) >= 1.6.0
 BuildRequires:	pkgconfig(libvoikko)
 Conflicts:	%{libname} < 1.6.0-3
 
@@ -39,7 +42,7 @@ This package provides the necessary development libraries and include
 files to allow you to develop with enchant.
 
 %prep
-%setup -qn %{name}-%{name}-%(echo %{version} |sed -e 's,\.,-,g')
+%setup -qn %{name}-%{name}-%{url_ver}
 %apply_patches
 autoreconf -fiv
 libtoolize --force
