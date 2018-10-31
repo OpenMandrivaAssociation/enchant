@@ -8,7 +8,7 @@
 Summary:	An enchanting spell checking library
 Name:		enchant
 Version:	1.6.1
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://abiword.github.io/enchant/
