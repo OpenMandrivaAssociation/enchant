@@ -43,7 +43,7 @@ files to allow you to develop with enchant.
 
 %prep
 %setup -qn %{name}-%{name}-%{url_ver}
-%apply_patches
+%autopatch -p1
 autoreconf -fiv
 libtoolize --force
 
