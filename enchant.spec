@@ -48,6 +48,7 @@ files to allow you to develop with enchant.
 %build
 %configure \
 	--enable-myspell \
+	--disable-ispell --disable-aspell --disable-uspell --disable-hspell \
 	--with-myspell-dir=%{_datadir}/dict/ooo
 
 %make_build LIBTOOLFLAGS="--tag=CC"
@@ -59,7 +60,7 @@ files to allow you to develop with enchant.
 %doc AUTHORS HACKING README TODO
 %{_bindir}/*
 %{_datadir}/enchant
-%dir %{_mandir}/man1/*
+%doc %{_mandir}/man1/*
 %dir %{_libdir}/enchant
 %{_libdir}/enchant/lib*.so*
 
