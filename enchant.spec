@@ -14,6 +14,7 @@ Group:		System/Libraries
 Url:		https://abiword.github.io/enchant/
 Source0:	https://github.com/AbiWord/enchant/archive/enchant-%{url_ver}/%{name}-%{version}.tar.gz
 Patch0:		hunspell-1.4.0-has-no-limit.patch
+BuildRequires:	slibtool
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
 BuildRequires:	pkgconfig(glib-2.0)
@@ -51,10 +52,10 @@ files to allow you to develop with enchant.
 	--disable-ispell --disable-aspell --disable-uspell --disable-hspell \
 	--with-myspell-dir=%{_datadir}/dict/ooo
 
-%make_build LIBTOOLFLAGS="--tag=CC"
+%make_build LIBTOOL=slibtool-shared
 
 %install
-%make_install
+%make_install LIBTOOL=slibtool-shared
 
 %files
 %doc AUTHORS HACKING README TODO
