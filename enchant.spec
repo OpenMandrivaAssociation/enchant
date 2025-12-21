@@ -14,6 +14,10 @@ Group:		System/Libraries
 Url:		https://abiword.github.io/enchant/
 Source0:	https://github.com/AbiWord/enchant/archive/enchant-%{url_ver}/%{name}-%{version}.tar.gz
 Patch0:		hunspell-1.4.0-has-no-limit.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	make
 BuildRequires:	slibtool
 BuildRequires:	aspell-devel
 BuildRequires:	hspell-devel
